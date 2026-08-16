@@ -1,45 +1,266 @@
-🎵 Play Our Song
-A little something from Naman
+<!DOCTYPE html>
+<html lang="en">
 
-I'm Sorry, Ritu ❤️
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-Open My Heart 💌
-↓ scroll slowly ↓
-Dear Ritu,
+    <title>I'm Sorry Ritu ❤️</title>
 
-I know that saying sorry cannot erase the moments when I hurt you. But I want you to know that I truly regret them.
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
 
-I'm sorry for hurting you. I'm sorry for not understanding you when you needed me.
+<body>
 
-Sometimes I was too caught up in my own thoughts to understand what you were feeling.
+    <!-- Floating hearts -->
+    <div id="hearts"></div>
 
-You deserved patience, understanding and care. You deserved someone who really listens to you.
+    <!-- MUSIC -->
+    <audio id="bgMusic" loop>
+        <source
+            src="{{ url_for('static', filename='music.mp3') }}"
+            type="audio/mpeg">
+    </audio>
 
-I don't want a perfect relationship. I want our relationship. Honest, beautiful, silly, emotional and worth fighting for.
 
-I promise I'll try harder to listen, understand and communicate. I promise I'll never take your feelings for granted.
+    <!-- HERO -->
 
-With all my heart,
-Naman ❤️
+    <section class="hero">
 
-I can't change the past...
+        <div class="glow"></div>
 
-But I can change what I do next. ✨
-👂 Listen I'll listen before I react.
-🫶 Understand I'll try to understand your feelings.
-🤝 Communicate I'll talk instead of staying silent.
-💗 Care Your feelings matter to me.
-Naman and Ritu
-One more thing...
+        <p class="small-text">
+            A little something from Naman
+        </p>
 
-Ritu, you mean more to me than these words can explain.
-Thank you for the memories, the laughs, the little conversations, the random moments, and everything we've shared.
+        <h1>
+            I'm Sorry,
+            <span>Ritu</span> ❤️
+        </h1>
 
-❤️
-So, Ritu...
+        <p class="subtitle">
+            <span id="typing"></span>
+        </p>
 
-Will you forgive me?
-No pressure. Just one honest answer from the person who has my heart.
+        <button onclick="startExperience()">
+            Open My Heart 💌
+        </button>
 
-Yes, I forgive you 🥹❤️ I need a little time 🤍
-Made with a sorry heart by Naman ❤️ for Ritu
+        <div class="scroll">
+            ↓ scroll slowly ↓
+        </div>
+
+    </section>
+
+
+    <!-- APOLOGY LETTER -->
+
+    <section class="letter-section" id="letter">
+
+        <div class="envelope"
+             id="envelope"
+             onclick="openLetter()">
+
+            <div class="flap"></div>
+
+            <div class="paper">
+
+                <p class="hand">
+                    Dear Ritu,
+                </p>
+
+                <p>
+                    I know that saying sorry cannot erase
+                    the moments when I hurt you.
+                    But I want you to know that I truly regret them.
+                </p>
+
+                <p>
+                    I'm sorry for hurting you.
+                    I'm sorry for not understanding you
+                    when you needed me.
+                </p>
+
+                <p>
+                    Sometimes I was too caught up in my own thoughts
+                    to understand what you were feeling.
+                </p>
+
+                <p>
+                    You deserved patience,
+                    understanding,
+                    care,
+                    and someone who really listens to you.
+                </p>
+
+                <p>
+                    I don't want a perfect relationship.
+                    I want <b>our</b> relationship.
+                    Something honest, beautiful,
+                    silly and worth fighting for.
+                </p>
+
+                <p>
+                    I promise I'll try harder to listen,
+                    understand,
+                    communicate,
+                    and never take your feelings for granted.
+                </p>
+
+                <p class="hand">
+                    With all my heart,<br>
+                    Naman ❤️
+                </p>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- PROMISES -->
+
+    <section class="promise">
+
+        <p class="small-text">
+            I can't change the past...
+        </p>
+
+        <h2>
+            But I can change what I do next. ✨
+        </h2>
+
+        <div class="promise-grid">
+
+            <div>
+                👂
+                <b>Listen</b>
+                <span>
+                    I'll listen before I react.
+                </span>
+            </div>
+
+            <div>
+                🫶
+                <b>Understand</b>
+                <span>
+                    I'll try to understand your feelings.
+                </span>
+            </div>
+
+            <div>
+                🤝
+                <b>Communicate</b>
+                <span>
+                    I'll talk instead of staying silent.
+                </span>
+            </div>
+
+            <div>
+                💗
+                <b>Care</b>
+                <span>
+                    Your feelings matter to me.
+                </span>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- MEMORY -->
+
+    <section class="memory">
+
+        <div class="photo-card">
+
+            <img
+                src="{{ url_for('static', filename='ritu.jpg') }}"
+                alt="Naman and Ritu"
+                class="couple-photo">
+
+        </div>
+
+        <div class="memory-text">
+
+            <p class="small-text">
+                One more thing...
+            </p>
+
+            <h2>
+                Ritu, you mean more to me
+                than these words can explain.
+            </h2>
+
+            <p>
+                Thank you for the memories,
+                the laughs,
+                the little conversations,
+                the random moments,
+                and everything we've shared.
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- FINAL QUESTION -->
+
+    <section class="final">
+
+        <div class="final-card">
+
+            <div class="big-heart">
+                ❤️
+            </div>
+
+            <p class="small-text">
+                So, Ritu...
+            </p>
+
+            <h2>
+                Will you forgive me?
+            </h2>
+
+            <p class="soft">
+                No pressure.
+                Just one honest answer
+                from the person who has my heart.
+            </p>
+
+            <div class="buttons">
+
+                <button class="yes"
+                        onclick="forgive()">
+                    Yes, I forgive you 🥹❤️
+                </button>
+
+                <button class="maybe"
+                        id="maybe"
+                        onclick="moveButton()">
+                    I need a little time 🤍
+                </button>
+
+            </div>
+
+            <div id="response"></div>
+
+        </div>
+
+    </section>
+
+
+    <footer>
+        Made with a sorry heart by Naman ❤️ for Ritu
+    </footer>
+
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
