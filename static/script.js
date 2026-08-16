@@ -269,3 +269,21 @@ function moveButton() {
         "Take all the time you need. I'll still be here. 🤍";
 
 }
+// =========================
+// MUSIC
+// =========================
+
+const music = document.getElementById("bgMusic");
+
+function startExperience() {
+
+    // Start music after the user's tap
+    music.volume = 0.7;
+
+    music.play().catch(function(error) {
+        console.log("Music could not start:", error);
+    });
+
+    // Open the letter
+    openLetter();
+}
