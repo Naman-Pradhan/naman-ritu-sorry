@@ -913,3 +913,31 @@ footer {
     }
 
 }
+.music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    z-index: 9999;
+
+    padding: 12px 20px;
+    border: none;
+    border-radius: 30px;
+
+    background: rgba(255, 255, 255, 0.15);
+    color: white;
+
+    font-size: 15px;
+    font-weight: 600;
+
+    cursor: pointer;
+
+    backdrop-filter: blur(10px);
+
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
+
+    transition: 0.3s;
+}
+
+.music-btn:hover {
+    transform: scale(1.05);
+}
