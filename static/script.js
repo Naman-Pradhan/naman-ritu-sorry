@@ -1,289 +1,163 @@
-/* =========================
-   ELEMENTS
-========================= */
-
-const envelope =
-    document.getElementById("envelope");
-
-const response =
-    document.getElementById("response");
-
-const music =
-    document.getElementById("bgMusic");
-
-
-/* =========================
-   TYPING EFFECT
-========================= */
-
-const typingText =
-    "I'm sorry for hurting you and for not understanding you the way I should have. I don't want to lose you, Ritu. ❤️";
-
-const typingElement =
-    document.getElementById("typing");
-
-let typingIndex = 0;
-
-
-function typeMessage() {
-
-    if (
-        typingIndex <
-        typingText.length
-    ) {
-
-        typingElement.textContent +=
-            typingText.charAt(
-                typingIndex
-            );
-
-        typingIndex++;
-
-        setTimeout(
-            typeMessage,
-            45
-        );
-
-    }
-
-}
-
-
-typeMessage();
-
-
-/* =========================
-   MUSIC
-========================= */
-
-function toggleMusic() {
-
-    const button =
-        document.querySelector(
-            ".music-btn"
-        );
-
-
-    if (music.paused) {
-
-        music.play()
-            .then(() => {
-
-                button.textContent =
-                    "⏸️ Pause Our Song";
-
-            })
-            .catch(() => {
-
-                button.textContent =
-                    "🎵 Tap Again";
-
-            });
-
-    }
-
-    else {
-
-        music.pause();
-
-        button.textContent =
-            "🎵 Play Our Song";
-
-    }
-
-}
-
-
-/* =========================
-   OPEN LETTER
-========================= */
-
-function openLetter() {
-
-    envelope.classList.toggle(
-        "open"
-    );
-
-
-    if (
-        envelope.classList.contains(
-            "open"
-        )
-    ) {
-
-        setTimeout(() => {
-
-            document
-                .getElementById("letter")
-                .scrollIntoView({
-                    behavior: "smooth"
-                });
-
-        }, 300);
-
-    }
-
-}
-
-
-/* =========================
-   FLOATING HEARTS
-========================= */
-
-function makeHeart() {
-
-    const heart =
-        document.createElement(
-            "div"
-        );
-
-
-    heart.className =
-        "float-heart";
-
-
-    const symbols = [
-        "❤️",
-        "💕",
-        "💗",
-        "💖",
-        "💓",
-        "✨"
-    ];
-
-
-    heart.textContent =
-        symbols[
-            Math.floor(
-                Math.random() *
-                symbols.length
-            )
-        ];
-
-
-    heart.style.left =
-        Math.random() *
-        100 +
-        "vw";
-
-
-    heart.style.fontSize =
-        14 +
-        Math.random() *
-        28 +
-        "px";
-
-
-    heart.style.animationDuration =
-        5 +
-        Math.random() *
-        7 +
-        "s";
-
-
-    document
-        .getElementById("hearts")
-        .appendChild(
-            heart
-        );
-
-
-    setTimeout(() => {
-
-        heart.remove();
-
-    }, 13000);
-
-}
-
-
-setInterval(
-    makeHeart,
-    500
-);
-
-
-/* =========================
-   FORGIVE
-========================= */
-
-function forgive() {
-
-    response.textContent =
-        "Thank you, Ritu. I promise I'll do better. ❤️";
-
-
-    document
-        .querySelector(
-            ".big-heart"
-        )
-        .textContent =
-        "💖";
-
-
-    for (
-        let i = 0;
-        i < 50;
-        i++
-    ) {
-
-        setTimeout(
-            makeHeart,
-            i * 50
-        );
-
-    }
-
-}
-
-
-/* =========================
-   NEED TIME
-========================= */
-
-function moveButton() {
-
-    const button =
-        document.getElementById(
-            "maybe"
-        );
-
-
-    const x =
-        Math.random() *
-        160 -
-        80;
-
-
-    const y =
-        Math.random() *
-        100 -
-        50;
-
-
-    button.style.transform =
-        `translate(${x}px, ${y}px)`;
-
-
-    response.textContent =
-        "Take all the time you need. I'll still be here. 🤍";
-
-}
-// =========================
-// MUSIC
-// =========================
+// ===============================
+// SORRY WEBSITE - SCRIPT
+// ===============================
 
 const music = document.getElementById("bgMusic");
 
+// Typing animation
+const messages = [
+    "I'm sorry for hurting you...",
+    "I'm sorry for not understanding you...",
+    "You mean so much to me, Ritu ❤️"
+];
+
+let messageIndex = 0;
+let charIndex = 0;
+
+function typeMessage() {
+    const typing = document.getElementById("typing");
+
+    if (!typing) return;
+
+    if (charIndex < messages[messageIndex].length) {
+        typing.textContent += messages[messageIndex].charAt(charIndex);
+        charIndex++;
+
+        setTimeout(typeMessage, 70);
+    } else {
+        setTimeout(() => {
+            typing.textContent = "";
+            charIndex = 0;
+            messageIndex = (messageIndex + 1) % messages.length;
+            typeMessage();
+        }, 1800);
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    typeMessage();
+});
+
+
+// ===============================
+// OPEN HEART + MUSIC
+// ===============================
+
 function startExperience() {
 
-    // Start music after the user's tap
-    music.volume = 0.7;
+    // Start music directly from the button click
+    if (music) {
+        music.volume = 0.7;
 
-    music.play().catch(function(error) {
-        console.log("Music could not start:", error);
-    });
+        music.play()
+            .then(() => {
+                console.log("Music started ❤️");
+            })
+            .catch((error) => {
+                console.log("Music blocked:", error);
+            });
+    }
 
-    // Open the letter
     openLetter();
+}
+
+
+// ===============================
+// LETTER
+// ===============================
+
+function openLetter() {
+
+    const envelope = document.getElementById("envelope");
+
+    if (envelope) {
+        envelope.classList.toggle("open");
+    }
+
+    const letter = document.getElementById("letter");
+
+    if (letter) {
+        setTimeout(() => {
+            letter.scrollIntoView({
+                behavior: "smooth"
+            });
+        }, 300);
+    }
+}
+
+
+// ===============================
+// FORGIVENESS
+// ===============================
+
+function forgive() {
+
+    const response = document.getElementById("response");
+
+    if (response) {
+        response.innerHTML = `
+            <div class="forgive-message">
+                Thank you, Ritu. ❤️🥹
+                <br>
+                I'll make sure your forgiveness is worth it.
+            </div>
+        `;
+    }
+
+    createHearts();
+}
+
+
+// ===============================
+// MAYBE BUTTON
+// ===============================
+
+function moveButton() {
+
+    const button = document.getElementById("maybe");
+
+    if (!button) return;
+
+    const maxX = window.innerWidth - button.offsetWidth - 30;
+    const maxY = window.innerHeight - button.offsetHeight - 30;
+
+    const x = Math.random() * Math.max(maxX, 30);
+    const y = Math.random() * Math.max(maxY, 30);
+
+    button.style.position = "fixed";
+    button.style.left = `${x}px`;
+    button.style.top = `${y}px`;
+}
+
+
+// ===============================
+// FLOATING HEARTS
+// ===============================
+
+function createHearts() {
+
+    const container = document.getElementById("hearts");
+
+    if (!container) return;
+
+    for (let i = 0; i < 20; i++) {
+
+        const heart = document.createElement("div");
+
+        heart.className = "floating-heart";
+        heart.innerHTML = "❤️";
+
+        heart.style.left = Math.random() * 100 + "%";
+        heart.style.animationDuration =
+            (3 + Math.random() * 4) + "s";
+
+        heart.style.animationDelay =
+            Math.random() * 2 + "s";
+
+        container.appendChild(heart);
+
+        setTimeout(() => {
+            heart.remove();
+        }, 7000);
+    }
 }
