@@ -161,3 +161,24 @@ function createHearts() {
         }, 7000);
     }
 }
+function toggleMusic() {
+
+    const music = document.getElementById("bgMusic");
+    const button = document.querySelector(".music-btn");
+
+    if (music.paused) {
+
+        music.play()
+            .then(() => {
+                button.innerHTML = "⏸️ Pause Our Song";
+            })
+            .catch(() => {
+                alert("Please tap the button again to play the song ❤️");
+            });
+
+    } else {
+
+        music.pause();
+        button.innerHTML = "🎵 Play Our Song";
+    }
+}
